@@ -1,0 +1,120 @@
+specificationVersion: '0.19'
+
+aid: notion-sandbox
+type: Sandbox
+visibility: Public
+
+name: Notion API & MCP Sandbox
+description: >-
+  This is a Notion sandbox that uses OpenAPI, Microcks, Bruno, and
+  Backstage to provide a 3rd-party REST API and MCP sandbox for Notion.
+
+tags:
+  - Notion
+  - Sandbox
+
+image: https://naftiko.s3.us-east-1.amazonaws.com/naftiko-logo-blue-icon.png
+
+created: '2026-01-16'
+modified: '2026-01-17'
+
+url: https://github.com/naftiko/notion-sandbox/blob/main/README.md
+
+apis:
+
+    - aid: notion-sandbox:notion-sandbox
+      name: Notion Sandbox
+      description: >-
+        Provides a composite HTTP API.
+      tags:
+        - Notion
+        - Sandbox
+      properties:
+
+        - type: OpenApi
+          url: openapi/notion-openapi.yml
+        - type: MockRestServer
+          url: http://localhost:8080/rest/Notion+API/1.0.0
+        - type: MockMCPServer
+          url: http://localhost:8080/mcp/Notion+API/1.0.0/sse
+        - type: BackstageApi
+          url:
+
+common:
+
+  - type: Summary
+    data:
+      numberOfPaths: 26
+      numberOfOperations: 34
+      numberOfReadOperations: 14
+      numberOfWriteOperations: 20
+      numberOfSchemas: 127
+      numberOfResponses: 9
+      numberOfParameters: 12
+      numberOfExamples: 69
+      numberOfRequestBodies: 0
+      numberOfHeaders: 1
+
+  - type: GitHubHttpUrl
+    url: https://github.com/naftiko/notion-sandbox
+
+  - type: GitHubSshUrl
+    url: git@github.com:naftiko/notion-sandbox.git
+
+  - type: GitHubIssues
+    url: https://github.com/naftiko/notion-sandbox/issues
+
+  - type: GitHubDiscussions
+    url: https://github.com/orgs/naftiko/discussions
+
+  - type: Standards
+    data:
+
+      - name: APIs.json
+        description: This uses the APIs.json
+        docUrl: http://apisjson.org/
+
+      - name: OpenAPI
+        description: This uses OpenAPI to define access to all HTTP APIs.
+        docUrl: https://spec.openapis.org/oas/latest.html
+
+      - name: JSON Schema
+        description: This uses JSON Schema to define and validate all entities used.
+        docUrl: https://json-schema.org/specification
+
+      - name: Model Context Protocol
+        description: This uses MCP expresed as JSON schema to define each MCP server.
+        docUrl: https://modelcontextprotocol.io/
+
+      - name: Bruno Collections
+        description: This uses Bruno Collections to define each executable HTTP API integration.
+        docUrl: https://docs.usebruno.com/
+
+      - name: Bruno Environments
+        description: This uses Bruno Environments to store keys for each API to use in automation.
+        docUrl: https://docs.usebruno.com/secrets-management/overview
+
+      - name: API Commons
+        description: This uses an API Commons schema to define the plans and rate limits.
+        docUrl: https://apicommons.org/
+
+  - type: Services
+    data:
+
+      - aid: notion
+        name: Notion
+        description: >-
+          Notion is an all-in-one workspace and productivity platform that
+          combines notes, documents, databases, wikis, project management,
+          and collaboration tools into a single application.
+        docUrl: https://developers.notion.com/
+        apisJson: https://raw.githubusercontent.com/api-evangelist/notion/refs/heads/main/apis.yml
+        loginUrl: https://www.notion.so/login
+        signUpUrl: https://www.notion.so/signup
+        termsOfServiceUrl: https://www.notion.so/terms
+        privacyPolicyUrl: https://privacycenter.notion.so/policies
+
+maintainers:
+
+  - FN: Kin Lane
+    email: kinlane@naftiko.io
