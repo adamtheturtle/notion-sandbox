@@ -88,6 +88,150 @@ example {
 }
 
 example {
+  name: childPages
+
+  request: {
+    url: {{baseUrl}}/blocks/:block_id/children
+    method: GET
+    mode: none
+    params:query: {
+      ~page_size:
+      ~start_cursor: a335691ff1cdsxdc
+    }
+
+    params:path: {
+      block_id: 550e8400-e29b-41d4-a716-446655440000-child-pages
+    }
+
+    headers: {
+      Notion-Version:
+      Authorization:
+    }
+  }
+
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+
+    status: {
+      code: 200
+      text: OK
+    }
+
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "results": [
+            {
+              "object": "block",
+              "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "type": "child_page",
+              "created_time": "2023-03-10T14:00:00.000Z",
+              "last_edited_time": "2023-03-10T14:00:00.000Z",
+              "archived": false,
+              "has_children": true,
+              "child_page": {
+                "title": "Meeting Notes"
+              }
+            },
+            {
+              "object": "block",
+              "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+              "type": "child_page",
+              "created_time": "2023-03-11T09:00:00.000Z",
+              "last_edited_time": "2023-03-11T09:00:00.000Z",
+              "archived": false,
+              "has_children": true,
+              "child_page": {
+                "title": "Project Roadmap"
+              }
+            }
+          ],
+          "has_more": false,
+          "next_cursor": null,
+          "type": "block"
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: childDatabases
+
+  request: {
+    url: {{baseUrl}}/blocks/:block_id/children
+    method: GET
+    mode: none
+    params:query: {
+      ~page_size:
+      ~start_cursor: a335691ff1cdsxdc
+    }
+
+    params:path: {
+      block_id: 550e8400-e29b-41d4-a716-446655440000-child-databases
+    }
+
+    headers: {
+      Notion-Version:
+      Authorization:
+    }
+  }
+
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+
+    status: {
+      code: 200
+      text: OK
+    }
+
+    body: {
+      type: json
+      content: '''
+        {
+          "object": "list",
+          "results": [
+            {
+              "object": "block",
+              "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+              "type": "child_database",
+              "created_time": "2023-04-05T11:00:00.000Z",
+              "last_edited_time": "2023-04-05T11:00:00.000Z",
+              "archived": false,
+              "has_children": false,
+              "child_database": {
+                "title": "Task Tracker"
+              }
+            },
+            {
+              "object": "block",
+              "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+              "type": "child_database",
+              "created_time": "2023-04-06T15:30:00.000Z",
+              "last_edited_time": "2023-04-06T15:30:00.000Z",
+              "archived": false,
+              "has_children": false,
+              "child_database": {
+                "title": "Bug Reports"
+              }
+            }
+          ],
+          "has_more": false,
+          "next_cursor": null,
+          "type": "block"
+        }
+      '''
+    }
+  }
+}
+
+example {
   name: invalidRequest
   
   request: {

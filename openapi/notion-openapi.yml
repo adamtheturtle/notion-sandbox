@@ -471,12 +471,16 @@ paths:
           examples:
             Success:
               value: '550e8400-e29b-41d4-a716-446655440000'
+            ChildPages:
+              value: '550e8400-e29b-41d4-a716-446655440000-child-pages'
+            ChildDatabases:
+              value: '550e8400-e29b-41d4-a716-446655440000-child-databases'
             BadRequest:
-              value: '550e8400-e29b-41d4-a716-446655440000-bad-request'              
+              value: '550e8400-e29b-41d4-a716-446655440000-bad-request'
             NotFound:
-              value: '550e8400-e29b-41d4-a716-446655440000-not-found'  
+              value: '550e8400-e29b-41d4-a716-446655440000-not-found'
             RateLimited:
-              value: '550e8400-e29b-41d4-a716-446655440000-rate-limited'              
+              value: '550e8400-e29b-41d4-a716-446655440000-rate-limited'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/StartCursor'
         - $ref: '#/components/parameters/Authorization'
@@ -500,6 +504,56 @@ paths:
                             - type: text
                               text:
                                 content: First paragraph
+                    has_more: false
+                    next_cursor: null
+                    type: block
+                ChildPages:
+                  value:
+                    object: list
+                    results:
+                      - object: block
+                        id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                        type: child_page
+                        created_time: '2023-03-10T14:00:00.000Z'
+                        last_edited_time: '2023-03-10T14:00:00.000Z'
+                        archived: false
+                        has_children: true
+                        child_page:
+                          title: Meeting Notes
+                      - object: block
+                        id: b2c3d4e5-f6a7-8901-bcde-f12345678901
+                        type: child_page
+                        created_time: '2023-03-11T09:00:00.000Z'
+                        last_edited_time: '2023-03-11T09:00:00.000Z'
+                        archived: false
+                        has_children: true
+                        child_page:
+                          title: Project Roadmap
+                    has_more: false
+                    next_cursor: null
+                    type: block
+                ChildDatabases:
+                  value:
+                    object: list
+                    results:
+                      - object: block
+                        id: c3d4e5f6-a7b8-9012-cdef-123456789012
+                        type: child_database
+                        created_time: '2023-04-05T11:00:00.000Z'
+                        last_edited_time: '2023-04-05T11:00:00.000Z'
+                        archived: false
+                        has_children: false
+                        child_database:
+                          title: Task Tracker
+                      - object: block
+                        id: d4e5f6a7-b8c9-0123-defa-234567890123
+                        type: child_database
+                        created_time: '2023-04-06T15:30:00.000Z'
+                        last_edited_time: '2023-04-06T15:30:00.000Z'
+                        archived: false
+                        has_children: false
+                        child_database:
+                          title: Bug Reports
                     has_more: false
                     next_cursor: null
                     type: block
@@ -529,13 +583,19 @@ paths:
           def path = mockRequest.getRequest().getRequestURI();
           if (path.contains("550e8400-e29b-41d4-a716-446655440000-bad")) {
             return "BadRequest"
-          }               
+          }
           if (path.contains("550e8400-e29b-41d4-a716-446655440000-not-found")) {
             return "NotFound"
-          }   
+          }
           if (path.contains("550e8400-e29b-41d4-a716-446655440000-rate-limited")) {
             return "RateLimited"
-          }                      
+          }
+          if (path.contains("550e8400-e29b-41d4-a716-446655440000-child-pages")) {
+            return "ChildPages"
+          }
+          if (path.contains("550e8400-e29b-41d4-a716-446655440000-child-databases")) {
+            return "ChildDatabases"
+          }
           return "Success"
       security:
         - bearerHttpAuthentication: []
@@ -3713,6 +3773,16 @@ components:
           type: boolean
         parent:
           $ref: '#/components/schemas/Parent'
+        child_page:
+          type: object
+          properties:
+            title:
+              type: string
+        child_database:
+          type: object
+          properties:
+            title:
+              type: string
     RichText:
       type: object
       required:
@@ -6426,6 +6496,28 @@ components:
                 code: false
                 color: default
           color: default
+    ChildPageBlock:
+      value:
+        object: block
+        id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        type: child_page
+        created_time: '2023-03-10T14:00:00.000Z'
+        last_edited_time: '2023-03-10T14:00:00.000Z'
+        archived: false
+        has_children: true
+        child_page:
+          title: Meeting Notes
+    ChildDatabaseBlock:
+      value:
+        object: block
+        id: c3d4e5f6-a7b8-9012-cdef-123456789012
+        type: child_database
+        created_time: '2023-04-05T11:00:00.000Z'
+        last_edited_time: '2023-04-05T11:00:00.000Z'
+        archived: false
+        has_children: false
+        child_database:
+          title: Task Tracker
     TokenRequestExample:
       value:
         grant_type: authorization_code
