@@ -503,6 +503,7 @@ paths:
                     has_more: false
                     next_cursor: null
                     type: block
+                    block: {}
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -790,6 +791,7 @@ paths:
                     has_more: false
                     next_cursor: null
                     type: comment
+                    comment: {}
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':

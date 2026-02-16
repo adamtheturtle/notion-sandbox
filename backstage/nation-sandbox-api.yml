@@ -525,6 +525,7 @@ spec:
                         has_more: false
                         next_cursor: null
                         type: block
+                        block: {}
             '400':
               $ref: '#/components/responses/BadRequest'
             '401':
@@ -812,6 +813,7 @@ spec:
                         has_more: false
                         next_cursor: null
                         type: comment
+                        comment: {}
             '400':
               $ref: '#/components/responses/BadRequest'
             '401':
