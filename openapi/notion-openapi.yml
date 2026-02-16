@@ -2600,6 +2600,7 @@ paths:
                     has_more: false
                     next_cursor: null
                     type: page_or_database
+                    page_or_database: {}
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -2687,6 +2688,7 @@ paths:
                     has_more: false
                     next_cursor: null
                     type: user
+                    user: {}
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -6611,6 +6613,7 @@ components:
         has_more: false
         next_cursor: null
         type: template
+        template: {}
     FileUploadWebhookEvent:
       summary: File upload completed webhook
       value:
