@@ -6448,6 +6448,8 @@ components:
         archived: false
         properties:
           title:
+            id: title
+            type: title
             title:
               - type: text
                 text:
